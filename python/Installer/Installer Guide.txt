@@ -1,0 +1,24 @@
+----------------------------------HOW TO INSTALL PYTHON AND OMNIORBPY----------------------------------
+1. Download your Python version 2.7 and omniORBpy version 4.2.0
+2. Extract them to your desired path
+3. Open Settings -> System -> About -> Advanced  system settings -> Environment Variables
+4. Look at the User Variables. Find the 'Path' variable then click "Edit..."
+5. Then click "New" and then "Browse". Look for your Python, click on the Folder and press "OK"
+6. Do the same process on step 5 but instead, look for the omniORBpy-4.3.0\bin\x86_win32, 
+click on the Folder and press "OK"
+7. Look at the System Variables. Create a variable named "PYTHONPATH"
+8. For the Value, copy and paste the directory of the omniORBpy-4.2.0\lib\python and the
+omniORBpy-4.2.0\lib\x86_win32
+9. Click "OK" and then "Apply" and then "OK"
+10. Go to the directory of the omniORBpy-4.2.0\lib\python and copy all the files then paste it into
+the Python folder\Lib\site-packages.
+11. Do the same process on step 10 but instead, go to the directory of omniORBpy-4.2.0\lib\x86_win32
+and copy all the files then paste it into the Python folder\Lib\site-packages.
+
+---------------------------------------HOW TO COMPILE THE IDL (PYTHON)---------------------------------------
+1. Open your Command Prompt
+2. Change your directory in your Command Prompt to the directory of your Python program with 
+an idl
+3. Execute this command:
+omniidl -bpython <name of your idl>.idl
+It will create all the stubs that your PythonClient needs
