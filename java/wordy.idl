@@ -1,0 +1,79 @@
+module WordyModule {
+    typedef sequence<char> Letters;
+
+    struct Player_ {
+        string username;
+        long roundWins;
+    };
+
+    typedef sequence<Player_> PlayerList;
+
+    struct RoundWinner_ {
+        string name;
+        string winningWord;
+        long roundWins;
+    };
+
+    struct TopLongestWord {
+        //Longest words leaderboard entry
+        string username;
+        string word;
+        long letterCount;
+    };
+
+    struct TopPlayer {
+       //Most wins leaderboard entry
+       string username;
+       long roundWins;
+       long gameWins;
+    };
+
+    exception InvalidLoginException {
+        //Wrong username/password or username does not exist in the database
+        string reason;
+    };
+
+    exception NotEnoughPlayers {
+        //Not enough players to start the game
+        string reason;
+    };
+
+     exception NoWinnerException {
+        //1) No one sent any valid word
+        //2) Tie between players
+         string reason;
+     };
+
+    exception InvalidWordException {
+        //1) Word is less than 5 letters
+        //2) Word is not in the list
+        //3) Letter/s used are not from in the given
+        string reason;
+    };
+
+    interface Wordy {
+        void login(in string username, in string password) raises (InvalidLoginException);
+        void logout(in string username);
+
+        void initiateGame(in string username) raises (NotEnoughPlayers);
+        void submitWord(in string username, in string word) raises (InvalidWordException);
+
+        string getGameWinner(in string username);
+        PlayerList getAllPlayers(in string username);
+        RoundWinner_ getRoundWinner(in string username) raises (NoWinnerException);
+        Letters getLetters(in string username);
+        long getTime(in string username);
+
+        TopLongestWord getLongestWord(in long index);
+        long getLongestWordsSize();
+        TopPlayer getTopPlayers(in long index);
+        long getTopPlayersSize();
+
+        void disposeGame(in string username);
+
+        boolean gameStartFlag(in string username);
+        boolean gameEndFlag(in string username);
+        boolean roundEndFlag(in string username);
+    };
+
+};

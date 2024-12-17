@@ -1,0 +1,1 @@
+start orbd -ORBInitialHost localhost -ORBInitialPort 1050
